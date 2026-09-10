@@ -835,6 +835,28 @@ body.cmp-dark .cmp-page-num {
   border-color: #374151;
   color: #e5e7eb;
 }
+
+/* Override legacy Travel theme wrapper constraints for full-width responsiveness */
+body, .body-fauxcolumns, .content, .content-outer, .content-inner,
+.main-outer, .main-inner, .region-inner, .column-center-outer, .column-center-inner {
+  min-width: 0 !important;
+  max-width: 100% !important;
+  width: auto !important;
+  background-image: none !important;
+  background-color: transparent !important;
+}
+
+.content-outer {
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.cmp-feed-container {
+  width: 100% !important;
+  max-width: 100% !important;
+}
 ]]></b:skin>
 
     <b:template-skin>
@@ -2278,7 +2300,7 @@ head.appendChild(script);
     var entries = json.feed.entry;
 
     entries.forEach(function(entry) {
-      var title = entry.title ? entry.title.$t : 'Untitled';
+        var titleText = entry.title ? entry.title.$t : 'Untitled';
       var postUrl = '#';
       if (entry.link) {
         for (var i = 0; i < entry.link.length; i++) {
@@ -2289,7 +2311,7 @@ head.appendChild(script);
         }
       }
 
-      var thumbUrl = 'https://via.placeholder.com/600x350/1f2937/ffffff?text=CMP+Ideas';
+        var thumbUrl = '';
       if (entry.media$thumbnail && entry.media$thumbnail.url) {
         thumbUrl = entry.media$thumbnail.url.replace('/s72-c/', '/s600/');
       } else if (entry.content && entry.content.$t) {
@@ -2300,26 +2322,70 @@ head.appendChild(script);
       var dateStr = entry.published ? new Date(entry.published.$t).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) : '';
       var labelStr = (entry.category && entry.category.length > 0) ? entry.category[0].term : '';
 
-      var snippet = '';
+        var snippetText = '';
       if (entry.summary && entry.summary.$t) {
-        snippet = entry.summary.$t.replace(/<[^>]*>/g, '').substring(0, 110) + '...';
+          snippetText = entry.summary.$t.replace(/<[^>]*>/g, '').substring(0, 110) + '...';
       } else if (entry.content && entry.content.$t) {
-        snippet = entry.content.$t.replace(/<[^>]*>/g, '').substring(0, 110) + '...';
+          snippetText = entry.content.$t.replace(/<[^>]*>/g, '').substring(0, 110) + '...';
       }
 
-      var cardHtml = '<article class="cmp-post-card">' +
-        '<div class="cmp-card-media"><a href="' + postUrl + '"><img src="' + thumbUrl + '" alt="' + title + '"/></a></div>' +
-        '<div class="cmp-card-body">' +
-          '<div class="cmp-card-meta"><span>📅 ' + dateStr + '</span>' + (labelStr ? '<span>• ' + labelStr + '</span>' : '') + '</div>' +
-          '<h3 class="cmp-card-title"><a href="' + postUrl + '">' + title + '</a></h3>' +
-          '<div class="cmp-card-excerpt">' + snippet + '</div>' +
-          '<div class="cmp-card-footer"><a class="cmp-card-link" href="' + postUrl + '">Read More &rarr;</a></div>' +
-        '</div>' +
-      '</article>';
+        var article = document.createElement('article');
+        article.className = 'cmp-post-card';
 
-      var cardDiv = document.createElement('div');
-      cardDiv.innerHTML = cardHtml;
-      grid.appendChild(cardDiv.firstElementChild);
+        var mediaDiv = document.createElement('div');
+        mediaDiv.className = 'cmp-card-media';
+        var mediaLink = document.createElement('a');
+        mediaLink.href = postUrl;
+        if (thumbUrl) {
+          var img = document.createElement('img');
+          img.src = thumbUrl;
+          img.alt = titleText;
+          mediaLink.appendChild(img);
+        }
+        mediaDiv.appendChild(mediaLink);
+
+        var bodyDiv = document.createElement('div');
+        bodyDiv.className = 'cmp-card-body';
+
+        var metaDiv = document.createElement('div');
+        metaDiv.className = 'cmp-card-meta';
+        var dateSpan = document.createElement('span');
+        dateSpan.textContent = '📅 ' + dateStr;
+        metaDiv.appendChild(dateSpan);
+        if (labelStr) {
+          var labelSpan = document.createElement('span');
+          labelSpan.textContent = '• ' + labelStr;
+          metaDiv.appendChild(labelSpan);
+        }
+
+        var titleEl = document.createElement('h3');
+        titleEl.className = 'cmp-card-title';
+        var titleLink = document.createElement('a');
+        titleLink.href = postUrl;
+        titleLink.textContent = titleText;
+        titleEl.appendChild(titleLink);
+
+        var excerptDiv = document.createElement('div');
+        excerptDiv.className = 'cmp-card-excerpt';
+        excerptDiv.textContent = snippetText;
+
+        var footerDiv = document.createElement('div');
+        footerDiv.className = 'cmp-card-footer';
+        var cardLink = document.createElement('a');
+        cardLink.className = 'cmp-card-link';
+        cardLink.href = postUrl;
+        cardLink.textContent = 'Read More →';
+        footerDiv.appendChild(cardLink);
+
+        bodyDiv.appendChild(metaDiv);
+        bodyDiv.appendChild(titleEl);
+        bodyDiv.appendChild(excerptDiv);
+        bodyDiv.appendChild(footerDiv);
+
+        article.appendChild(mediaDiv);
+        article.appendChild(bodyDiv);
+
+        grid.appendChild(article);
     });
 
     cmpFeedState.startIndex += entries.length;
