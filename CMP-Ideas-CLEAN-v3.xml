@@ -487,6 +487,354 @@ body.mobile .AdSense {
 .mobile .tabs-inner .PageList .widget-content .pagelist-arrow {
   border-$startSide: 1px solid $(tabs.selected.text.color);
 }
+
+/* ==========================================================================
+   Modern Homepage Feed: Featured Hero Card & Responsive Card Grid
+   ========================================================================== */
+
+.cmp-featured-hero {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.cmp-featured-hero:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+}
+
+@media (min-width: 768px) {
+  .cmp-featured-hero {
+    flex-direction: row;
+    min-height: 340px;
+  }
+  .cmp-featured-hero .cmp-hero-media {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+  .cmp-featured-hero .cmp-hero-content {
+    flex: 1 1 50%;
+    max-width: 50%;
+  }
+}
+
+.cmp-hero-media {
+  position: relative;
+  background: #111827;
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.cmp-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.cmp-featured-hero:hover .cmp-hero-media img {
+  transform: scale(1.04);
+}
+
+.cmp-hero-badge {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background: #3b82f6;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.cmp-hero-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #ffffff;
+}
+
+.cmp-hero-content .cmp-post-meta {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cmp-hero-content h2.cmp-hero-title {
+  font-size: 24px;
+  line-height: 1.3;
+  margin: 0 0 12px 0;
+  font-weight: 800;
+}
+
+.cmp-hero-content h2.cmp-hero-title a {
+  color: #111827;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cmp-hero-content h2.cmp-hero-title a:hover {
+  color: #2563eb;
+}
+
+.cmp-hero-excerpt {
+  font-size: 14px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cmp-hero-readmore {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.cmp-hero-readmore:hover {
+  text-decoration: underline;
+}
+
+/* Post Cards Grid */
+.cmp-posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-bottom: 2.5rem;
+}
+
+@media (min-width: 640px) {
+  .cmp-posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .cmp-posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.cmp-post-card {
+  background: #ffffff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cmp-post-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.cmp-card-media {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: #1f2937;
+  overflow: hidden;
+}
+
+.cmp-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.cmp-post-card:hover .cmp-card-media img {
+  transform: scale(1.05);
+}
+
+.cmp-card-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.cmp-card-meta {
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cmp-card-title {
+  font-size: 17px;
+  line-height: 1.35;
+  margin: 0 0 10px 0;
+  font-weight: 700;
+}
+
+.cmp-card-title a {
+  color: #111827;
+  text-decoration: none;
+}
+
+.cmp-card-title a:hover {
+  color: #2563eb;
+}
+
+.cmp-card-excerpt {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex: 1;
+}
+
+.cmp-card-footer {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid #f3f4f6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cmp-card-link {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.cmp-card-link:hover {
+  text-decoration: underline;
+}
+
+/* Pagination & Load More */
+.cmp-pagination-wrapper {
+  text-align: center;
+  margin: 2rem 0 3rem 0;
+}
+
+.cmp-load-more-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+  transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.cmp-load-more-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+.cmp-load-more-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+.cmp-numbered-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.cmp-page-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  color: #374151;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cmp-page-num:hover, .cmp-page-num.active {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #2563eb;
+}
+
+/* Dark Mode Support for Cards */
+body.cmp-dark .cmp-featured-hero,
+body.cmp-dark .cmp-post-card {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+body.cmp-dark .cmp-hero-content {
+  background: #1f2937;
+}
+
+body.cmp-dark .cmp-hero-content h2.cmp-hero-title a,
+body.cmp-dark .cmp-card-title a {
+  color: #f9fafb;
+}
+
+body.cmp-dark .cmp-hero-excerpt,
+body.cmp-dark .cmp-card-excerpt {
+  color: #d1d5db;
+}
+
+body.cmp-dark .cmp-card-footer {
+  border-top-color: #374151;
+}
+
+body.cmp-dark .cmp-page-num {
+  background: #1f2937;
+  border-color: #374151;
+  color: #e5e7eb;
+}
 ]]></b:skin>
 
     <b:template-skin>
@@ -871,51 +1219,127 @@ head.appendChild(script);
                 <b:widget-setting name='showReactions'>false</b:widget-setting>
               </b:widget-settings>
               <b:includable id='main' var='top'>
-  <b:if cond='!data:mobile'>
-    <!-- posts -->
-    <div class='blog-posts hfeed'>
+  <b:include data='top' name='status-message'/>
 
-      <b:include data='top' name='status-message'/>
-
+  <b:if cond='data:blog.pageType in {&quot;index&quot;,&quot;archive&quot;} or data:blog.url == data:blog.homepageUrl'>
+    <div class='cmp-feed-container' id='cmpFeedContainer'>
       <b:loop values='data:posts' var='post'>
-        <b:if cond='data:post.isDateStart and not data:post.isFirstPost'>
-          &lt;/div&gt;&lt;/div&gt;
+        <!-- Pin latest post as Featured Hero Card on Homepage -->
+        <b:if cond='data:blog.url == data:blog.homepageUrl and data:post.isFirstPost'>
+          <article class='cmp-featured-hero'>
+            <div class='cmp-hero-media'>
+              <span class='cmp-hero-badge'>Featured Post</span>
+              <a expr:href='data:post.url'>
+                <b:if cond='data:post.firstImageUrl'>
+                  <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl'/>
+                <b:elseif cond='data:post.thumbnailUrl'/>
+                  <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl'/>
+                <b:else/>
+                  <img alt='Featured' src='https://via.placeholder.com/800x450/111827/ffffff?text=CMP+Ideas'/>
+                </b:if>
+              </a>
+            </div>
+            <div class='cmp-hero-content'>
+              <div class='cmp-post-meta'>
+                <b:if cond='data:post.dateHeader'>
+                  <span>📅 <data:post.dateHeader/></span>
+                <b:else/>
+                  <span>📅 <data:post.timestamp/></span>
+                </b:if>
+                <b:if cond='data:post.labels'>
+                  <b:loop values='data:post.labels' var='label'>
+                    <b:if cond='data:label.isLast'>
+                      <span>🏷️ <data:label.name/></span>
+                    </b:if>
+                  </b:loop>
+                </b:if>
+              </div>
+              <h2 class='cmp-hero-title'>
+                <a expr:href='data:post.url'><data:post.title/></a>
+              </h2>
+              <div class='cmp-hero-excerpt'>
+                <b:if cond='data:post.snippet'>
+                  <data:post.snippet/>
+                <b:else/>
+                  <data:post.title/>
+                </b:if>
+              </div>
+              <a class='cmp-hero-readmore' expr:href='data:post.url'>
+                Read Article &amp;rarr;
+              </a>
+            </div>
+          </article>
         </b:if>
-        <b:if cond='data:post.isDateStart'>
-          &lt;div class=&quot;date-outer&quot;&gt;
-        </b:if>
-        <b:if cond='data:post.dateHeader'>
-          <h2 class='date-header'><span><data:post.dateHeader/></span></h2>
-        </b:if>
-        <b:if cond='data:post.isDateStart'>
-          &lt;div class=&quot;date-posts&quot;&gt;
-        </b:if>
+      </b:loop>
+
+      <!-- Grid for remaining recent entries -->
+      <div class='cmp-posts-grid' id='cmpPostsGrid'>
+        <b:loop values='data:posts' var='post'>
+          <b:if cond='not (data:blog.url == data:blog.homepageUrl and data:post.isFirstPost)'>
+            <article class='cmp-post-card'>
+              <div class='cmp-card-media'>
+                <a expr:href='data:post.url'>
+                  <b:if cond='data:post.firstImageUrl'>
+                    <img expr:alt='data:post.title' expr:src='data:post.firstImageUrl'/>
+                  <b:elseif cond='data:post.thumbnailUrl'/>
+                    <img expr:alt='data:post.title' expr:src='data:post.thumbnailUrl'/>
+                  <b:else/>
+                    <img alt='Post' src='https://via.placeholder.com/600x350/1f2937/ffffff?text=CMP+Ideas'/>
+                  </b:if>
+                </a>
+              </div>
+              <div class='cmp-card-body'>
+                <div class='cmp-card-meta'>
+                  <span>📅 <data:post.timestamp/></span>
+                  <b:if cond='data:post.labels'>
+                    <b:loop values='data:post.labels' var='label'>
+                      <b:if cond='data:label.isLast'>
+                        <span>• <data:label.name/></span>
+                      </b:if>
+                    </b:loop>
+                  </b:if>
+                </div>
+                <h3 class='cmp-card-title'>
+                  <a expr:href='data:post.url'><data:post.title/></a>
+                </h3>
+                <div class='cmp-card-excerpt'>
+                  <b:if cond='data:post.snippet'>
+                    <data:post.snippet/>
+                  <b:else/>
+                    <data:post.title/>
+                  </b:if>
+                </div>
+                <div class='cmp-card-footer'>
+                  <a class='cmp-card-link' expr:href='data:post.url'>Read More &amp;rarr;</a>
+                </div>
+              </div>
+            </article>
+          </b:if>
+        </b:loop>
+      </div>
+
+      <!-- Pagination and AJAX Load More Container -->
+      <div class='cmp-pagination-wrapper' id='cmpPaginationWrapper'>
+        <button class='cmp-load-more-btn' id='cmpLoadMoreBtn' type='button' onclick='cmpLoadMorePosts()'>
+          <span id='cmpLoadMoreText'>Load More Articles</span>
+        </button>
+        <div class='cmp-numbered-pagination' id='cmpNumberedPagination'/>
+      </div>
+    </div>
+  <b:else/>
+    <!-- Single Item or Static Page view -->
+    <div class='blog-posts hfeed'>
+      <b:loop values='data:posts' var='post'>
         <div class='post-outer'>
           <b:include data='post' name='post'/>
           <b:include cond='data:blog.pageType in {&quot;static_page&quot;,&quot;item&quot;}' data='post' name='comment_picker'/>
         </div>
-
-        <!-- Ad -->
-        <b:if cond='data:post.includeAd'>
-          <div class='inline-ad'>
-            <data:adCode/>
-          </div>
-        </b:if>
       </b:loop>
-      <b:if cond='data:numPosts != 0'>
-        &lt;/div&gt;&lt;/div&gt;
-      </b:if>
     </div>
-
-    <!-- navigation -->
-    <b:include name='nextprev'/>
-
-    <!-- feed links -->
-    <b:include name='feedLinks'/>
-
-  <b:else/>
-    <b:include name='mobile-main'/>
   </b:if>
+
+  <!-- Feed links -->
+  <b:include name='feedLinks'/>
 </b:includable>
               <b:includable id='backlinkDeleteIcon' var='backlink'/>
               <b:includable id='backlinks' var='post'/>
@@ -1791,6 +2215,125 @@ head.appendChild(script);
   function cmpToggleMore(){var m=document.getElementById('cmpMore');if(m)m.classList.toggle('open')}
   function cmpToggleDark(){document.body.classList.toggle('cmp-dark');try{localStorage.setItem('cmp-dark',document.body.classList.contains('cmp-dark')?'1':'0')}catch(e){}}
   (function(){try{if(localStorage.getItem('cmp-dark')==='1')document.body.classList.add('cmp-dark')}catch(e){}})();
+
+  /* <![CDATA[ */
+  // Dynamic Feed Pagination & AJAX Load More
+  var cmpFeedState = {
+    startIndex: 0,
+    perPage: 6,
+    loading: false,
+    hasMore: true
+  };
+
+  function cmpInitFeedState() {
+    var heroCount = document.querySelectorAll('.cmp-featured-hero').length;
+    var gridCardCount = document.querySelectorAll('#cmpPostsGrid .cmp-post-card').length;
+    cmpFeedState.startIndex = heroCount + gridCardCount + 1;
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', cmpInitFeedState);
+  } else {
+    cmpInitFeedState();
+  }
+
+  function cmpLoadMorePosts() {
+    var btn = document.getElementById('cmpLoadMoreBtn');
+    var txt = document.getElementById('cmpLoadMoreText');
+    var grid = document.getElementById('cmpPostsGrid');
+
+    if (!grid || cmpFeedState.loading || !cmpFeedState.hasMore) return;
+
+    cmpFeedState.loading = true;
+    if (txt) txt.textContent = 'Loading...';
+    if (btn) btn.disabled = true;
+
+    var feedUrl = '/feeds/posts/default?alt=json-in-script&orderby=published&start-index=' +
+                  cmpFeedState.startIndex + '&max-results=' + cmpFeedState.perPage +
+                  '&callback=cmpFeedCallback';
+
+    var script = document.createElement('script');
+    script.src = feedUrl;
+    script.onerror = function() {
+      cmpFeedState.loading = false;
+      if (txt) txt.textContent = 'Failed to load posts. Try again.';
+      if (btn) btn.disabled = false;
+    };
+    document.body.appendChild(script);
+  }
+
+  function cmpFeedCallback(json) {
+    var btn = document.getElementById('cmpLoadMoreBtn');
+    var txt = document.getElementById('cmpLoadMoreText');
+    var grid = document.getElementById('cmpPostsGrid');
+
+    cmpFeedState.loading = false;
+
+    if (!json || !json.feed || !json.feed.entry || json.feed.entry.length === 0) {
+      cmpFeedState.hasMore = false;
+      if (txt) txt.textContent = 'No More Articles';
+      if (btn) btn.disabled = true;
+      return;
+    }
+
+    var entries = json.feed.entry;
+
+    entries.forEach(function(entry) {
+      var title = entry.title ? entry.title.$t : 'Untitled';
+      var postUrl = '#';
+      if (entry.link) {
+        for (var i = 0; i < entry.link.length; i++) {
+          if (entry.link[i].rel === 'alternate') {
+            postUrl = entry.link[i].href;
+            break;
+          }
+        }
+      }
+
+      var thumbUrl = 'https://via.placeholder.com/600x350/1f2937/ffffff?text=CMP+Ideas';
+      if (entry.media$thumbnail && entry.media$thumbnail.url) {
+        thumbUrl = entry.media$thumbnail.url.replace('/s72-c/', '/s600/');
+      } else if (entry.content && entry.content.$t) {
+        var imgMatch = entry.content.$t.match(/<img[^>]+src=["']([^"']+)["']/i);
+        if (imgMatch) thumbUrl = imgMatch[1];
+      }
+
+      var dateStr = entry.published ? new Date(entry.published.$t).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'}) : '';
+      var labelStr = (entry.category && entry.category.length > 0) ? entry.category[0].term : '';
+
+      var snippet = '';
+      if (entry.summary && entry.summary.$t) {
+        snippet = entry.summary.$t.replace(/<[^>]*>/g, '').substring(0, 110) + '...';
+      } else if (entry.content && entry.content.$t) {
+        snippet = entry.content.$t.replace(/<[^>]*>/g, '').substring(0, 110) + '...';
+      }
+
+      var cardHtml = '<article class="cmp-post-card">' +
+        '<div class="cmp-card-media"><a href="' + postUrl + '"><img src="' + thumbUrl + '" alt="' + title + '"/></a></div>' +
+        '<div class="cmp-card-body">' +
+          '<div class="cmp-card-meta"><span>📅 ' + dateStr + '</span>' + (labelStr ? '<span>• ' + labelStr + '</span>' : '') + '</div>' +
+          '<h3 class="cmp-card-title"><a href="' + postUrl + '">' + title + '</a></h3>' +
+          '<div class="cmp-card-excerpt">' + snippet + '</div>' +
+          '<div class="cmp-card-footer"><a class="cmp-card-link" href="' + postUrl + '">Read More &rarr;</a></div>' +
+        '</div>' +
+      '</article>';
+
+      var cardDiv = document.createElement('div');
+      cardDiv.innerHTML = cardHtml;
+      grid.appendChild(cardDiv.firstElementChild);
+    });
+
+    cmpFeedState.startIndex += entries.length;
+
+    if (entries.length < cmpFeedState.perPage) {
+      cmpFeedState.hasMore = false;
+      if (txt) txt.textContent = 'No More Articles';
+      if (btn) btn.disabled = true;
+    } else {
+      if (txt) txt.textContent = 'Load More Articles';
+      if (btn) btn.disabled = false;
+    }
+  }
+  /* ]]> */
   </script>
 
   <script type='text/javascript'>
